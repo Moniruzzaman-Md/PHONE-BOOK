@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS users (id INT NOT NULL AUTO_INCREMENT, username VARCHAR(15) NOT NULL,password VARCHAR(15) NOT NULL, PRIMARY KEY (id));
+
+create table if not exists contacts(id int not null auto_increment, name varchar(20) not null, num1 varchar(15) not null, num2 varchar(15),
+num3 varchar(15), num4 varchar(15), num5 varchar(15), num6 varchar(15), email varchar(20), street varchar(15), city varchar(15), state varchar(15), zip varchar(15),
+country varchar(20), about text, _group varchar(15), profilepic varchar(200), userid int not null, primary key(id));
+
+create table if not exists appointments(id int not null auto_increment, appointmentwith varchar(100) not null, title varchar(20) not null, 
+dateandtime varchar(30) not null, details text, userid int not null, primary key(id));

@@ -1,0 +1,152 @@
+﻿<Window x:Class="PhoneBook.UI.appointment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local1="clr-namespace:PhoneBook.MyControl"
+        mc:Ignorable="d"
+       Title="Appointment" Height="400" Width="550" Background="Black" Icon="/PhoneBook;component/Image/Icon/logo.png" ResizeMode="NoResize" Closing="Window_Closing">
+    <Grid>
+        <Grid x:Name="newAppointment" Visibility="Hidden">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF0E062E" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Appointment With" Grid.Row="1" Grid.Column="1" Foreground="White" FontSize="16" FontFamily="Arial Narrow" Margin="3"/>
+            <TextBox x:Name="appointmentwith" Grid.Row="1" Grid.Column="2" Margin="3" Foreground="White" Background="DimGray" FontFamily="Arial Narrow"  VerticalContentAlignment="Center" FontSize="16">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Label Content="Title" Grid.Row="2" Grid.Column="1" Foreground="White" FontSize="16" FontFamily="Arial Narrow" Margin="3"/>
+            <TextBox x:Name="titletxt" Grid.Row="2" Grid.Column="2" Margin="3" Foreground="White" Background="DimGray" VerticalContentAlignment="Center" FontSize="16" FontFamily="Arial Narrow">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Label Content="Date and Time" Grid.Row="3" Grid.Column="1" Foreground="White" FontSize="16" FontFamily="Arial Narrow" Margin="3"/>
+            <xctk:DateTimePicker x:Name="datePicker"  Grid.Row="3" Grid.Column="2" Margin="3" Background="DimGray">
+            </xctk:DateTimePicker>
+            <Label Content="Details" Grid.Row="4" Grid.Column="1" Foreground="White" FontSize="16" FontFamily="Arial Narrow" Margin="3"/>
+            <RichTextBox x:Name="detailstxt" Grid.Row="4" Grid.Column="2" VerticalScrollBarVisibility="Auto" Margin="2" Background="DimGray" FontSize="16" Foreground="White" FontFamily="Arial Narrow">
+                <RichTextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </RichTextBox.Resources>
+            </RichTextBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center">
+                <Button x:Name="btnsave" Content="Save" HorizontalAlignment="Center" Margin="10" Width="80" Height="30" Background="Transparent" BorderThickness="1" BorderBrush="Green" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnsave_Click" MouseEnter="btnsave_MouseEnter" MouseLeave="btnsave_MouseLeave">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="btncancel" Content="Cancel" HorizontalAlignment="Center" Margin="10" Width="80" Height="30" Background="Transparent" BorderThickness="1" BorderBrush="Red" Foreground="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="btncancel_MouseEnter" MouseLeave="btncancel_MouseLeave" Click="btncancel_Click">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+            <TextBlock x:Name="Warning" Grid.Row="6" Grid.Column="2" Foreground="#FFFFF700" HorizontalAlignment="Center" FontSize="16" Visibility="Collapsed"/>
+        </Grid>
+        <Grid x:Name="appoinmentList" Margin="5" Visibility="Visible">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF0E062E" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.RowSpan="2" Grid.Column="0" Grid.Row="0">
+                <local1:AppointmentListControl x:Name="AppointmentList" />
+            </Grid>
+            <Button x:Name="btnNewAppointment" Grid.Column="1" Margin="10,3,10,3" Content="New Appointment" Foreground="White" FontFamily="Jokerman" FontSize="18" MouseEnter="btnNewAppointment_MouseEnter" MouseLeave="btnNewAppointment_MouseLeave" Click="btnNewAppointment_Click" Background="#FF1E1E1E">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="30"/>
+                    </Style>
+                </Button.Resources>
+                <Button.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFC7FF00" Offset="0"/>
+                        <GradientStop Color="#FF00FF28" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.BorderBrush>
+            </Button>
+            <Grid x:Name="AppointmentDetails" Grid.Row="1" Grid.Column="1" Margin="2" Visibility="Hidden">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FF0E062E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="appointmentTitle" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="This Is The Title of The Appiontment" FontFamily="Impact" HorizontalContentAlignment="Center" FontSize="17" Background="{x:Null}" Foreground="White"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="With : " Foreground="LightGray" Padding="15,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right"  FontSize="10" />
+                <TextBlock x:Name="appointmentWith" Grid.Row="2" Grid.Column="1"  Text="Zaman" Foreground="White" FontSize="18"  Padding="5,0,0,0"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="At : " Foreground="LightGray" Padding="15,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right"  FontSize="10" />
+                <TextBlock x:Name="time" Grid.Row="3" Grid.Column="1"  Text="10 PM" Foreground="White" FontSize="18"  Padding="5,0,0,0"/>
+                <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                    <Label Content="Details : " Foreground="LightGray" Padding="15,8,0,0"  HorizontalAlignment="Right"  FontSize="10" />
+                </StackPanel>
+                <RichTextBox x:Name="details" Grid.Row="4" Grid.Column="1" Height="100" Background="{x:Null}" Foreground="White" FontSize="18"  Margin="5,0,0,0" VerticalScrollBarVisibility="Auto">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                    <RichTextBox.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF1C492E"/>
+                            <GradientStop Color="#FF7C7D7D" Offset="1"/>
+                        </LinearGradientBrush>
+                    </RichTextBox.BorderBrush>
+                </RichTextBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
